@@ -1,0 +1,418 @@
+/* v-archive-tier.overlay.css, revision 2 (2023/09/01)
+ * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
+ * 아래로 내리면 옵션이 있습니다
+ *
+ * 이 스타일시트는 v-archive.net 티어표를 방송용으로 예쁘게 표시하기 위한 것입니다
+ * v-archive.net으로부터 허가/승인받지 않았으며 아무런 관계도 책임도 없습니다.
+ * 허가받지 않아도 이 CSS를 사용하는 데에는 문제가 전혀 없지만은 다만 그 쪽으로 민원을 보내진 마세요
+ *
+ * OBS 안에서 v-archive에 로그인하면 상단 티어 부분에 배경 이미지가 깔립니다.
+ * CSS를 적용하기 전에 로그인 먼저 하시는 걸 추천드림
+ */
+:root {
+  --font-size-header: 20px; /* 티어 부분 크기 배율 */
+  --font-size: 20px; /* 나머지 부분 크기 배율 */
+  
+  --row-height: 36px;
+  
+  --font: Lato, 'Source Han Sans K';
+  --numeric-font: '____', Lato; /* ____는 꼭 유지하십시오 */
+
+  --color-maxcombo: #4ea8;
+  --color-perfect: #e33c;
+
+  --color-text: #fff;
+  --color-shadow: #000;
+  --color-background: #000c;
+
+  --order-index: 0; /* 순번 */
+  --order-jacket: 1; /* 재킷 */
+  --order-level: 2; /* 레벨 (산정) */
+  --order-level2: 3; /* 레벨 (인게임) */
+  --order-pattern: 4; /* 패턴종류 */
+  --order-title: 5; /* 제목 */
+  --order-score: 6; /* 레이트 */
+  --order-rating: 7; /* 스킬포인트 */
+
+  --show-pattern-name: 1; /* 0=숨김, 1=보임 */
+  --pattern-width: 8px;
+
+  --display-index: none;
+  /* --display-jacket: none; */
+  /* --display-level: none; */
+  --display-level2: none;
+  /* --display-title: none; */
+  /* --display-score: none; */
+  --display-rating: none;
+}
+
+/**********/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@font-face {
+  /* '@' '(' ')' '/' 가려주는 전용 폰트 */
+  font-family: '____';
+  src: url('data:application/font-woff2;base64,d09GMgABAAAAAAIoAA0AAAAABXgAAAHRAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cBmAAgmQIBBEICoEkgUALEgABNgIkAxgEIAWCQQcgG54EIK4LeDL+UWWILRGKo1rmohp+rkXvT4mH/9b43fdmZr9J9opYNG2WRKxaponVLQHppOgJb9A4Z/2Pbb6PVQhRTDqJ0Ggw1euLdStlsVpXxMgwqeP5RCBirk75qsXO/3Ecn3Z+XBQm8M5jyKMw7gKM/gCQdZ54oG3T0QB1PDCabnOPlyCqw0OPIIKmEPDp4SufbOq7Gn/jpUY+zvd4ileILzZHkloBEABw9Fo3xwMby8qQIXsQAFhBKChYQOAcVmABZy8YNyolVjiiAVhh0F8qYpihAB2ooOmIjgBEIgEAQYFK68AIX7SaD0EMJBgFsyAxinEsgXVgAwYGxLVOtKl6LN9rfLUf67/J7xNCSRCI+mWA0buwcftrpPrTs2sfGC+pO7TQpvuui//K4smE4OS9v/Pi9n8myvdj+0UQa7LHqARB9jgFEGsQAKDGHQoQhwAABEaNSpAIgd1CJDDttQCQAoQwIkAKUwIUi3oEqnAXgWbMIwE64ZUi6hhAEVJBSmMothJRpZto5p02O+kZXIzlQSdH97J/tbIgS4VioCUb00wiUKtIxT6DT5Wkd10t5MJYbuURIUuCOrh2zQj5mIWrm017JEvg9WNd47ICDGzhAAAA') format('woff2');
+}
+* {
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  font-size: var(--font-size);
+}
+html, body, .bg_white {
+  font-family: var(--font);
+  background: transparent;
+  color: var(--color-text);
+  text-shadow: 0 0 0.125rem var(--color-shadow), 0 0 0.125rem var(--color-shadow), 0 0 0.5rem var(--color-shadow);
+  padding: 0;
+}
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.head_notice.head_notice,
+.top,
+.header,
+.footer,
+.archive_top_menu.bg_white,
+.tier_history,
+.user_board_tools {
+  display: none;
+}
+
+.layout {
+  position: fixed; /* 상단 모바일형 광고 workaround, 광고 노출수는 아마도 집계 잘 될테니 걱정 마세요 */
+  top: 0;
+  width: 100vw !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.layout,
+.rating_info,
+.rating_list,
+.tier_logo_area,
+.rating_info .rating_detail,
+.rating_list_row .pattern,
+.rating_list_row .title{
+  margin: 0 !important;
+  padding: 0 !important;
+  width: unset;
+  max-width: unset !important;
+  min-height: unset;
+}
+.bg_eee {
+  background-color: transparent !important;
+}
+
+.rating_info {
+  display: grid;
+  font-weight: 700;
+}
+.tier_logo_area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  font-size: var(--font-size-header);
+  padding: 0.5em 0.25em !important;
+  width: 100%;
+  height: 4em;
+  
+  text-shadow: 0 0 0.125rem black, 0 0 0.5rem black;
+  
+  overflow: hidden;
+  z-index: 10;
+}
+.tier_logo_area .tier_header,
+.tier_logo_area .tier_name {
+  width: unset !important;
+  position: unset !important;
+  line-height: 1.25em;
+  text-align: left;
+}
+.tier_logo_area .tier_header {
+  font-size: 1em;
+  padding: 0 0.5em !important;
+}
+.tier_logo_area .tier_name {
+  font-size: 1.5em;
+  padding: 0 0.375em !important;
+}
+.tier_logo_area > img {
+  position: absolute;
+  top: -1em;
+  right: -1.5em;
+  width: 9em !important;
+  z-index: -1;
+  mix-blend-mode: lighten;
+}
+/* 로그인해야(=그래프 버튼이 있어야) 먹힘!! */
+.tier_logo_area {
+  background-size: cover;
+  background-position: center;
+}
+.rating_info:has([data-button="4"]) .tier_logo_area {
+  background-image: url('/static/images/bg/4B-BG.png');
+}
+.rating_info:has([data-button="5"]) .tier_logo_area {
+  background-image: url('/static/images/bg/5B-BG.png');
+}
+.rating_info:has([data-button="6"]) .tier_logo_area {
+  background-image: url('/static/images/bg/6B-BG.png');
+}
+.rating_info:has([data-button="8"]) .tier_logo_area {
+  background-image: url('/static/images/bg/8B-BG.png');
+}
+
+/**********/
+
+.rating_info {
+  position: relative;
+}
+.rating_info .rating_detail {
+  position: unset;
+  right: 0;
+  bottom: 0;
+  
+  font-family: var(--numeric-font);
+  font-size: var(--font-size-header);
+  line-height: 4.25em;
+  
+  height: 4em;
+  margin-top: -4em !important;
+  margin-right: 5.5em !important;
+  padding: 0 .5em !important;
+  
+  color: white;
+  text-align: right;
+  
+  text-shadow: none;
+  filter: drop-shadow(0 0 0.125rem #000) drop-shadow(0 0 0.5rem #000);
+  
+  z-index: 20;
+
+  overflow: hidden;
+}
+.rating_detail .rating_detail_row {
+  overflow: hidden;
+}
+.rating_detail .rating_detail_row .value {
+  font-size: clamp(1em, 10vw, 2em);
+  font-variant-numeric: tabular-nums;
+  margin-right: -1.74em; /* Lato: em scale=2000, numeric width=1160, dot width=475 */
+}
+.rating_detail > div > div:not(:nth-child(3)),
+.rating_detail > div > div:nth-child(3) .label {
+  display: none;
+}
+.rating_info .rating_detail br,
+.rating_info .rating_detail p {
+  display: none;
+}
+h1 {
+  display: none;
+}
+
+/**********/
+
+.rating_list_row {
+  display: flex;
+  position: relative;
+
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: var(--row-height);
+  height: var(--row-height);
+
+  background: var(--color-background, #000c);
+}
+.rating_list_row,
+.rating_list_row > div {
+  font-size: inherit;
+  border: none !important;
+  width: unset;
+}
+.rating_list_row a {
+  text-decoration: none;
+}
+.rating_list_header {
+  display: none;
+}
+
+/**********/
+
+.rating_list_row .index {
+  display: var(--display-index, block);
+  order: var(--order-index);
+}
+.rating_list_row .record {
+  display: var(--display-jacket, block);
+  order: var(--order-jacket);
+}
+/* level/level2는 아래에서 */
+.rating_list_row .title > a {
+  display: var(--display-pattern, block);
+  order: var(--order-pattern);
+}
+.rating_list_row .pattern {
+  display: var(--display-pattern, block);
+  order: var(--order-pattern);
+}
+.rating_list_row .score {
+  display: var(--display-score, block);
+  order: var(--order-score);
+}
+.rating_list_row .rating {
+  display: var(--display-rating, block);
+  order: var(--order-rating);
+}
+
+/**********/
+
+.rating_list_row .index {
+  flex-basis: 2.25em;
+  font-size: 0.8em;
+  position: unset;
+
+  color: inherit;
+}
+.rating_list_row .index > span {
+  text-align: center;
+}
+
+.rating_list_row .record, .rating_list_row .jacket {
+  flex-basis: var(--row-height);
+  width: var(--row-height);
+  height: var(--row-height);
+}
+.rating_list_row .title {
+  display: contents;
+}
+.rating_list_row .title > a {
+  /* title */
+  display: block;
+  font-size: 1em;
+  
+  min-width: 0;
+  text-indent: 0.5rem;
+
+  flex-grow: 1;
+}
+.rating_list_row .title > .ago {
+  display: none !important;
+}
+.rating_list_row .new_icon {
+  /* display: var(--display-new-icon, block); */
+  display: none;
+}
+
+.rating_list_row .level,
+.rating_list_row .score,
+.rating_list_row .rating,
+.rating_list_row .pattern {
+  position: unset !important;
+  flex-grow: 0;
+  flex-shrink: 0;
+}   
+.rating_list_row .level {  
+  position: relative;
+  display: contents;
+  
+  text-align: right;
+  font-family: var(--numeric-font);
+  font-variant-numeric: tabular-nums;
+}
+.rating_list_row .level span {
+  margin: 0 !important;
+  padding: 0 0.375em 0 0;
+  font-size: 1em !important;
+}
+
+/* 산정된 레벨 */
+.rating_list_row .level > span:first-child:last-child, /* 없 */
+.rating_list_row .level > span:last-child:not(:first-child) /* 있 */ {
+  display: var(--display-level, block);
+  order: var(--order-level);
+
+  flex-basis: 3em;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* 공식 레벨 */
+.rating_list_row .level:has(span:first-child:last-child)::after, /* 없 */
+.rating_list_row .level > span:first-child:not(:last-child) /* 있 */ {
+  display: var(--display-level2, block);
+  order: var(--order-level2);
+  content: '';
+  
+  flex-basis: 1.25rem;
+  flex-shrink: 0;
+  
+  font-size: 0.75em !important;
+  opacity: 0.5;
+}
+/* 산정된 레벨이 없을 때 */
+.rating_list_row .level > span:first-child:last-child::after {
+  content: '.0';
+  opacity: 0.25;
+}
+
+.rating_list_row .pattern {
+  --flag: clamp(0, var(--show-pattern-name), 1);
+  align-self: center;
+
+  flex-shrink: 0;
+
+  height: calc(1.5em * var(--flag) + 100% * (1 - var(--flag)));
+  line-height: 1.5em;
+  text-align: center;
+  text-shadow: none;
+
+  flex-basis: calc(2.25em * var(--flag) + var(--pattern-width) * (1 - var(--flag)));
+  
+  font-size: calc(0.75em * var(--flag));
+}
+.rating_list_row .score {
+  grid-area: score;
+  padding: 0 0.375rem;
+  
+  font-family: var(--numeric-font);
+  font-variant-numeric: tabular-nums;
+  
+/*   text-align: center; */
+  color: #fff !important;
+  text-shadow: inherit;
+}
+.rating_list_row .score.score_clear {
+  background: none;
+  color: inherit !important;
+}
+.rating_list_row .score.score_maxcombo,
+.rating_list_row .score.score_perfect {
+  text-shadow: 0 0 0.1em #000, 0 0 0.1em #000, 0 0 0.2em #000;
+}
+.rating_list_row .score.score_maxcombo {
+  background: var(--color-maxcombo, #4ea8);
+}
+.rating_list_row .score.score_perfect {
+  background: var(--color-perfect, #e33c) !important;
+}
+.rating_list_row .rating {
+  white-space: nowrap;
+  word-break: keep-all;
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+  /* width: unset !important; */
+  flex-basis: 5em;
+}
+.rating_list_row .rating .maxRating {
+  display: none;
+}
