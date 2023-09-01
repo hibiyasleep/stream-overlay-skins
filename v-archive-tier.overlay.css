@@ -1,7 +1,7 @@
-/* v-archive-obs.css, rv 1.1 (2023/09/01)
+/* v-archive-obs.css, rv 1.2 (2023/09/01)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
-:root {
+ :root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
   --font-size: 20px; /* 나머지 부분 크기 배율 */
   
@@ -32,7 +32,7 @@
   --display-index: none;
   /* --display-jacket: none; */
   /* --display-level: none; */
-  --display-level2: none;
+/*   --display-level2: none; */
   /* --display-title: none; */
   /* --display-score: none; */
   --display-rating: none;
@@ -312,8 +312,14 @@ h1 {
   position: unset !important;
   flex-grow: 0;
   flex-shrink: 0;
-}   
-.rating_list_row .level {  
+}
+/*
+ *                   | level                 | level2
+ * level presents    | + span                | > a
+ * level not present | :not(:last-child) > a | :last-child::after
+ *                    
+ **/
+.rating_list_row .level {
   position: relative;
   display: contents;
   
@@ -321,15 +327,19 @@ h1 {
   font-family: var(--numeric-font);
   font-variant-numeric: tabular-nums;
 }
-.rating_list_row .level span {
+.rating_list_row .level > span {
   margin: 0 !important;
-  padding: 0 0.375em 0 0;
   font-size: 1em !important;
+}
+.rating_list_row .level > span[style] + span, /* 산정 */
+.rating_list_row .level > span[style]:last-child::after, /* 산정 없을 때 공식 자리의 빈칸 */
+.rating_list_row .level > span[style] > a /* 산정인 척 하는 공식 */ {
+  padding: 0 0.375em 0 0 !important;
 }
 
 /* 산정된 레벨 */
-.rating_list_row .level > span:first-child:last-child, /* 없 */
-.rating_list_row .level > span:last-child:not(:first-child) /* 있 */ {
+.rating_list_row .level > span[style]:last-child > a, /* 산정인 척 하는 공식 */
+.rating_list_row .level > span[style] + span /* 산정 */ {
   display: var(--display-level, block);
   order: var(--order-level);
 
@@ -339,12 +349,16 @@ h1 {
 }
 
 /* 공식 레벨 */
-.rating_list_row .level:has(span:first-child:last-child)::after, /* 없 */
-.rating_list_row .level > span:first-child:not(:last-child) /* 있 */ {
+.rating_list_row .level > span[style] /* <a>를 level2로 쓰겠다 */ {
+  display: var(--display-level2, contents);
+}
+.rating_list_row .level > span[style]:last-child::after, /* 산정 없을 때 공식 자리의 빈칸 */
+.rating_list_row .level > span[style]:not(:last-child) > a /* 공식 */ {
+  box-sizing: border-box;
   display: var(--display-level2, block);
   order: var(--order-level2);
   content: '';
-  
+
   flex-basis: 1.25rem;
   flex-shrink: 0;
   
@@ -352,10 +366,11 @@ h1 {
   opacity: 0.5;
 }
 /* 산정된 레벨이 없을 때 */
-.rating_list_row .level > span:first-child:last-child::after {
+.rating_list_row .level > span[style]:last-child a::after {
   content: '.0';
   opacity: 0.25;
 }
+
 
 .rating_list_row .pattern {
   --flag: clamp(0, var(--show-pattern-name), 1);
