@@ -71,7 +71,6 @@ body {
 .header,
 .footer,
 .archive_top_menu.bg_white,
-.tier_history,
 .user_board_tools {
   display: none;
 }
@@ -101,26 +100,30 @@ body {
   background-color: transparent !important;
 }
 
+/**********/
+
 .rating_info {
-  display: grid;
-  font-weight: 700;
-}
-.tier_logo_area {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
-
+  
+  font-weight: 700;
   font-size: var(--font-size-header);
-  padding: 0.5em 0.25em !important;
+  
+  padding: 0 !important;
   width: 100%;
   height: 4em;
+
+  text-indent: 0.75em;
   
+  background: transparent !important;
   text-shadow: 0 0 0.125rem black, 0 0 0.5rem black;
-  
   overflow: hidden;
-  z-index: 10;
+}
+.tier_logo_area {
+  display: contents;
+  font-size: inherit;
 }
 .tier_logo_area .tier_header,
 .tier_logo_area .tier_name {
@@ -131,78 +134,102 @@ body {
 }
 .tier_logo_area .tier_header {
   font-size: 1em;
-  padding: 0 0.5em !important;
 }
 .tier_logo_area .tier_name {
   font-size: 1.5em;
-  padding: 0 0.375em !important;
 }
 .tier_logo_area > img {
   position: absolute;
   top: -1em;
   right: -1.5em;
   width: 9em !important;
-  z-index: -1;
+  z-index: 10;
   mix-blend-mode: lighten;
-}
-/* 로그인해야(=그래프 버튼이 있어야) 먹힘!! */
-.tier_logo_area {
-  background-size: cover;
-  background-position: center;
-}
-.rating_info:has([data-button="4"]) .tier_logo_area {
-  background-image: url('/static/images/bg/4B-BG.png');
-}
-.rating_info:has([data-button="5"]) .tier_logo_area {
-  background-image: url('/static/images/bg/5B-BG.png');
-}
-.rating_info:has([data-button="6"]) .tier_logo_area {
-  background-image: url('/static/images/bg/6B-BG.png');
-}
-.rating_info:has([data-button="8"]) .tier_logo_area {
-  background-image: url('/static/images/bg/8B-BG.png');
 }
 
 /**********/
 
-.rating_info {
-  position: relative;
+.rating_info .rating_detail,
+.rating_info .rating_detail > div {
+  display: contents;
 }
-.rating_info .rating_detail {
-  position: unset;
-  right: 0;
+/* 레이팅 숫자 */
+.rating_detail .rating_detail_row:nth-child(3) {
+  position: absolute;
+  top: 0;
+  right: calc(5.75 * var(--font-size-header));
   bottom: 0;
+
+  font-size: clamp(1em, 9vw, 2.5em);
+  height: 1em;
+  margin: auto;
   
   font-family: var(--numeric-font);
-  font-size: var(--font-size-header);
-  line-height: 4.25em;
-  
-  height: 4em;
-  margin-top: -4em !important;
-  margin-right: 5.5em !important;
-  padding: 0 .5em !important;
-  
-  color: white;
-  text-align: right;
-  
   text-shadow: none;
-  filter: drop-shadow(0 0 0.125rem #000) drop-shadow(0 0 0.5rem #000);
-  
-  z-index: 20;
+  filter: drop-shadow(0 0 0.125em #000) drop-shadow(0 0 0.5em #000);
 
   overflow: hidden;
+  z-index: 50;
 }
-.rating_detail .rating_detail_row {
-  overflow: hidden;
-}
-.rating_detail .rating_detail_row .value {
-  font-size: clamp(1em, 10vw, 2em);
+.rating_detail .rating_detail_row:nth-child(3) .value {
+  line-height: 1em;
   font-variant-numeric: tabular-nums;
   margin-right: -1.74em; /* Lato: em scale=2000, numeric width=1160, dot width=475 */
 }
-.rating_detail > div > div:not(:nth-child(3)),
-.rating_detail > div > div:nth-child(3) .label {
+
+/* 헤더 배경을 버튼에서 끌어씀 */
+/* 로그인해야(=그래프 버튼이 있어야) 먹힘!! */
+.rating_detail > div > .rating_detail_row:nth-child(3) .tier_history {
   display: none;
+}
+button.tier_history {
+  border: none;
+  border-radius: 0;
+}
+button.tier_history > i {
+  display: none;
+}
+button.tier_history::after {
+  display: block;
+  content: '';
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  width: 100vw;
+  height: calc(var(--font-size-header) * 4);
+
+  background-size: cover;
+  background-position: center;
+
+  background-color: black;
+  z-index: -1000;
+}
+
+button.tier_history[data-button="4"]::after {
+  background-image: url('/static/images/bg/4B-BG.png');
+}
+button.tier_history[data-button="5"]::after {
+  background-image: url('/static/images/bg/5B-BG.png');
+}
+button.tier_history[data-button="6"]::after {
+  background-image: url('/static/images/bg/6B-BG.png');
+}
+button.tier_history[data-button="8"]::after {
+  background-image: url('/static/images/bg/8B-BG.png');
+}
+
+/* 정리 */
+.rating_detail .label,
+.rating_detail > div > div:nth-child(1),
+.rating_detail > div > div:nth-child(4) {
+  display: none;
+}
+.rating_detail > div > div:nth-child(2) {
+  height: 0;
+  font-size: 0;
+  z-index: -1000;
 }
 .rating_info .rating_detail br,
 .rating_info .rating_detail p {
@@ -310,6 +337,7 @@ h1 {
 .rating_list_row .rating,
 .rating_list_row .pattern {
   position: unset !important;
+  flex-basis: unset;
   flex-grow: 0;
   flex-shrink: 0;
 }
