@@ -1,13 +1,5 @@
-/* v-archive-tier.overlay.css, revision 2 (2023/09/01)
+/* v-archive-obs.css, rv 1.1 (2023/09/01)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
- * 아래로 내리면 옵션이 있습니다
- *
- * 이 스타일시트는 v-archive.net 티어표를 방송용으로 예쁘게 표시하기 위한 것입니다
- * v-archive.net으로부터 허가/승인받지 않았으며 아무런 관계도 책임도 없습니다.
- * 허가받지 않아도 이 CSS를 사용하는 데에는 문제가 전혀 없지만은 다만 그 쪽으로 민원을 보내진 마세요
- *
- * OBS 안에서 v-archive에 로그인하면 상단 티어 부분에 배경 이미지가 깔립니다.
- * CSS를 적용하기 전에 로그인 먼저 하시는 걸 추천드림
  */
 :root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
