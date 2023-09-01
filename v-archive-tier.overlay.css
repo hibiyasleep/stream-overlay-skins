@@ -1,12 +1,12 @@
-/* v-archive-obs.css, rv 1.3 (2023/09/01)
+/* v-archive-obs.css, rv 1.4 (2023/09/01)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
  :root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
   --font-size: 20px; /* 나머지 부분 크기 배율 */
-  
+
   --row-height: 36px;
-  
+
   --font: Lato, 'Source Han Sans K';
   --numeric-font: '____', Lato; /* ____는 꼭 유지하십시오 */
 
@@ -70,7 +70,6 @@ body {
 .top,
 .header,
 .footer,
-.archive_top_menu.bg_white,
 .user_board_tools {
   display: none;
 }
@@ -102,24 +101,59 @@ body {
 
 /**********/
 
+.archive_top_menu {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  border: 0;
+  width: unset;
+  height: unset;
+  padding: 1em;
+
+  background: black;
+  opacity: 0.000001;
+  z-index: 500000000000;
+}
+.archive_top_menu:hover {
+  opacity: 1;
+}
+.archive_top_menu .button.overall {
+  display: none;
+}
+.archive_top_menu .button.overall {
+  background: currentColor;
+}
+
+/**********/
+
 .rating_info {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   font-weight: 700;
   font-size: var(--font-size-header);
-  
+
   padding: 0 !important;
   width: 100%;
-  height: 4em;
+  --header-height: calc(var(--font-size-header) * 4);
+  height: var(--header-height);
 
   text-indent: 0.75em;
-  
+
   background: transparent !important;
   text-shadow: 0 0 0.125rem black, 0 0 0.5rem black;
   overflow: hidden;
+}
+.rating_info::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: -2000;
 }
 .tier_logo_area {
   display: contents;
@@ -163,7 +197,7 @@ body {
   font-size: clamp(1em, 9vw, 2.5em);
   height: 1em;
   margin: auto;
-  
+
   font-family: var(--numeric-font);
   text-shadow: none;
   filter: drop-shadow(0 0 0.125em #000) drop-shadow(0 0 0.5em #000);
@@ -172,7 +206,7 @@ body {
   z-index: 50;
 }
 .rating_detail .rating_detail_row:nth-child(3) .value {
-  line-height: 1em;
+  line-height: 1.1em;
   font-variant-numeric: tabular-nums;
   margin-right: -1.74em; /* Lato: em scale=2000, numeric width=1160, dot width=475 */
 }
@@ -192,13 +226,13 @@ button.tier_history > i {
 button.tier_history::after {
   display: block;
   content: '';
-  
+
   position: absolute;
   top: 0;
   left: 0;
-  
+
   width: 100vw;
-  height: calc(var(--font-size-header) * 4);
+  height: var(--header-height);
 
   background-size: cover;
   background-position: center;
@@ -244,6 +278,7 @@ h1 {
 .rating_list_row {
   display: flex;
   position: relative;
+  width: 100%;
 
   font-size: 1rem !important;
   font-weight: 400 !important;
@@ -318,11 +353,10 @@ h1 {
   /* title */
   display: block;
   font-size: 1em;
-  
   min-width: 0;
+  max-width: unset !important;
   text-indent: 0.5rem;
-
-  flex-grow: 1;
+  flex-grow: 10000;
 }
 .rating_list_row .title > .ago {
   display: none !important;
@@ -345,12 +379,12 @@ h1 {
  *                   | level                 | level2
  * level presents    | + span                | > a
  * level not present | :not(:last-child) > a | :last-child::after
- *                    
+ *
  **/
 .rating_list_row .level {
   position: relative;
   display: contents;
-  
+
   text-align: right;
   font-family: var(--numeric-font);
   font-variant-numeric: tabular-nums;
@@ -389,7 +423,7 @@ h1 {
 
   flex-basis: 1.25rem;
   flex-shrink: 0;
-  
+
   font-size: 0.75em !important;
   opacity: 0.5;
 }
@@ -412,16 +446,16 @@ h1 {
   text-shadow: none;
 
   flex-basis: calc(2.25em * var(--flag) + var(--pattern-width) * (1 - var(--flag)));
-  
+
   font-size: calc(0.75em * var(--flag));
 }
 .rating_list_row .score {
   grid-area: score;
   padding: 0 0.375rem;
-  
+
   font-family: var(--numeric-font);
   font-variant-numeric: tabular-nums;
-  
+
 /*   text-align: center; */
   color: #fff !important;
   text-shadow: inherit;
