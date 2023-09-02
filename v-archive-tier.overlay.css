@@ -1,4 +1,4 @@
-/* v-archive-obs.css, rv 1.4 (2023/09/01)
+/* v-archive-obs.css, rv 1.5 (2023/09/02)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
  :root {
@@ -393,6 +393,9 @@ h1 {
   margin: 0 !important;
   font-size: 1em !important;
 }
+.rating_list_row .level > span[style] {
+  display: contents;
+}
 .rating_list_row .level > span[style] + span, /* 산정 */
 .rating_list_row .level > span[style]:last-child::after, /* 산정 없을 때 공식 자리의 빈칸 */
 .rating_list_row .level > span[style] > a /* 산정인 척 하는 공식 */ {
@@ -411,7 +414,7 @@ h1 {
 }
 
 /* 공식 레벨 */
-.rating_list_row .level > span[style] /* <a>를 level2로 쓰겠다 */ {
+.rating_list_row .level > span[style]:not(:last-child) /* <a>를 level2로 쓰겠다 */ {
   display: var(--display-level2, contents);
 }
 .rating_list_row .level > span[style]:last-child::after, /* 산정 없을 때 공식 자리의 빈칸 */
