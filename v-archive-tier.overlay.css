@@ -1,5 +1,6 @@
-/* v-archive-obs.css, rv 1.8 (2023/09/02)
+/* v-archive-obs.css, rv 1.9 (2023/09/02)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
+ * 이거 말고 이거 위에 걸 복사하세요
  */
 :root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
@@ -8,7 +9,7 @@
   --row-height: 36px;
 
   --font: Lato, 'Source Han Sans K';
-  --numeric-font: '____', Lato; /* ____는 꼭 유지하십시오 */
+  --numeric-font: '____', Lato;
 
   --color-maxcombo: #4ea8;
   --color-perfect: #e33c;
