@@ -1,4 +1,4 @@
-/* v-archive-obs.css, rv 1.5 (2023/09/02)
+/* v-archive-obs.css, rv 1.6 (2023/09/02)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
  :root {
@@ -208,6 +208,8 @@ body {
 .rating_detail .rating_detail_row:nth-child(3) .value {
   line-height: 1.1em;
   font-variant-numeric: tabular-nums;
+  text-indent: 0;
+  min-width: 4.8775em;
   margin-right: -1.74em; /* Lato: em scale=2000, numeric width=1160, dot width=475 */
 }
 
