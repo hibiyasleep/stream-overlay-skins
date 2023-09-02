@@ -2,6 +2,8 @@
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe>
  * https://gist.github.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc
  */
+@import url('https://gistcdn.githack.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/v-archive-tier.overlay.css?v=1.9');
+
 :root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
   --font-size: 20px; /* 나머지 부분 크기 배율 */
@@ -40,5 +42,3 @@
   --display-rating: none;
   /* --display-new-icon: none; */
 }
-
-@import url('https://gistcdn.githack.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/v-archive-tier.overlay.css');

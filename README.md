@@ -4,12 +4,12 @@
 
 ## 사용법
 
-요약: [이거](https://gist.githubusercontent.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/index.css) 복사해서 OBS 브라우저 속성에 CSS에다 던지세요
+요약: [이거](https://gist.githubusercontent.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/index.css?v=1.9) 복사해서 OBS 브라우저 속성에 CSS에다 던지세요
 
 1. OBS에 브라우저를 추가하세요.
 2. URL을 선생님의 티어표로 맞추세요.
 3. (선택, 하면좋음) '상호작용'을 열어서 v-archive에 로그인하세요.
-4. [여기 있는 CSS 코드](https://gist.githubusercontent.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/index.css)를 싹 긁어서 복사하세요.
+4. [여기 있는 CSS 코드](https://gist.githubusercontent.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/index.css?v=1.9)를 싹 긁어서 복사하세요.
 5. 브라우저 속성을 열고, '사용자 지정 CSS' 섹션에 통째로 붙여넣으세요.
 6. (선택) 원하시는 대로 옵션 숫자나 폰트를 조정하시면 OK
 
@@ -51,6 +51,8 @@
   
 ## 변경기록
 
+* 1.9 (2023/09/03)
+  * `@import` 버그 수정
 * 1.8 (2023/09/03)
   * NEW! 딱지 추가
 * 1.7 (2023/09/02)
