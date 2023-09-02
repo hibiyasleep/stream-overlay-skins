@@ -1,0 +1,43 @@
+/* v-archive-obs.css, rv 1.7 (2023/09/02)
+ * (c) 2023 hibiya inemuri <inemuri@hibiya.moe>
+ * https://gist.github.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc
+ */
+:root {
+  --font-size-header: 20px; /* 티어 부분 크기 배율 */
+  --font-size: 20px; /* 나머지 부분 크기 배율 */
+
+  --row-height: 36px; /* 한 줄 높이 */
+
+  --font: Lato, 'Source Han Sans K'; /* 본문 폰트 */
+  --numeric-font: '____', Lato; /* 숫자 폰트 (왠만하면바꾸지마세요 폰트에딱맞춘거있음) */
+
+  --color-maxcombo: #4ea8;
+  --color-perfect: #e33c;
+
+  --color-text: #fff;
+  --color-shadow: #000;
+  --color-background: #000c;
+
+  --order-index: 0; /* 순번 */
+  --order-jacket: 1; /* 재킷 */
+  --order-level: 2; /* 레벨 (산정) */
+  --order-level2: 3; /* 레벨 (인게임) */
+  --order-pattern: 4; /* 패턴종류 */
+  --order-title: 5; /* 제목 */
+  --order-score: 6; /* 레이트 */
+  --order-rating: 7; /* 스킬포인트 */
+
+  --show-pattern-name: 1; /* 0=숨김, 1=보임 */
+  --pattern-width: 8px;
+
+  /* 앞뒤 */ /*를 지우면 해당 항목이 가려집니다 */
+  --display-index: none;
+  /* --display-jacket: none; */
+  /* --display-level: none; */
+  --display-level2: none;
+  /* --display-title: none; */
+  /* --display-score: none; */
+  --display-rating: none;
+}
+
+@import url('https://gistcdn.githack.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/v-archive-tier.overlay.css');

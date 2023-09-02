@@ -1,7 +1,7 @@
-/* v-archive-obs.css, rv 1.6 (2023/09/02)
+/* v-archive-obs.css, rv 1.7 (2023/09/02)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
- :root {
+:root {
   --font-size-header: 20px; /* 티어 부분 크기 배율 */
   --font-size: 20px; /* 나머지 부분 크기 배율 */
 
@@ -29,13 +29,13 @@
   --show-pattern-name: 1; /* 0=숨김, 1=보임 */
   --pattern-width: 8px;
 
-  --display-index: none;
+  /* --display-index: none; */
   /* --display-jacket: none; */
   /* --display-level: none; */
-  --display-level2: none;
+  /* --display-level2: none; */
   /* --display-title: none; */
   /* --display-score: none; */
-  --display-rating: none;
+  /* --display-rating: none; */
 }
 
 /**********/
