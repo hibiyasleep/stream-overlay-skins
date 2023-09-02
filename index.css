@@ -38,6 +38,7 @@
   /* --display-title: none; */
   /* --display-score: none; */
   --display-rating: none;
+  /* --display-new-icon: none; */
 }
 
 @import url('https://gistcdn.githack.com/hibiyasleep/9e54a4aacb014faa3dc96cd78a1ad2cc/raw/v-archive-tier.overlay.css');

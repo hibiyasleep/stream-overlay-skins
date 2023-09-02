@@ -1,4 +1,4 @@
-/* v-archive-obs.css, rv 1.7 (2023/09/02)
+/* v-archive-obs.css, rv 1.8 (2023/09/02)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  */
 :root {
@@ -364,8 +364,18 @@ h1 {
   display: none !important;
 }
 .rating_list_row .new_icon {
-  /* display: var(--display-new-icon, block); */
-  display: none;
+  display: var(--display-new-icon, inline-block);
+  order: 20;
+  width: 0;
+  height: 0;
+  margin: 0 0 0 -1em;
+  padding: 0;
+  text-indent: 1000000em;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-top: 1em solid yellow;
+  border-left: 1em solid transparent;
 }
 
 .rating_list_row .level,
