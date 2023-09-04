@@ -1,4 +1,4 @@
-/* v-archive-tier.css, rv 1.9 (2023/09/03)
+/* v-archive-tier.css, rv 1.10 (2023/09/04)
  * (c) 2023 hibiya inemuri <inemuri@hibiya.moe> CC BY-SA 4.0 (저작자표시, 동일조건변경허락)
  * 이거 말고 이거 위에 걸 복사하세요
  */
@@ -246,16 +246,16 @@ button.tier_history::after {
 }
 
 button.tier_history[data-button="4"]::after {
-  background-image: url('/static/images/bg/4B-BG.png');
+  background-image: url('https://v-archive.net/static/images/bg/4B-BG.png');
 }
 button.tier_history[data-button="5"]::after {
-  background-image: url('/static/images/bg/5B-BG.png');
+  background-image: url('https://v-archive.net/static/images/bg/5B-BG.png');
 }
 button.tier_history[data-button="6"]::after {
-  background-image: url('/static/images/bg/6B-BG.png');
+  background-image: url('https://v-archive.net/static/images/bg/6B-BG.png');
 }
 button.tier_history[data-button="8"]::after {
-  background-image: url('/static/images/bg/8B-BG.png');
+  background-image: url('https://v-archive.net/static/images/bg/8B-BG.png');
 }
 
 /* 정리 */
